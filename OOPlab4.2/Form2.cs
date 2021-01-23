@@ -18,14 +18,7 @@ namespace OOPlab4._2
 
         private void button1_Click(object sender, EventArgs e)
         {
-            try
-            {
-                m.Value = Int32.Parse(button1.Text);
-            }
-            catch(FormatException)
-            {
-                m.Value = 0;
-            }
+            ++m.Value;
         }
 
         private void trackBar1_Scroll(object sender, EventArgs e)
@@ -48,25 +41,31 @@ namespace OOPlab4._2
         private void richTextBox1_KeyDown(object sender, 
             KeyEventArgs e)
         {
-            try
+            if (e.KeyCode == Keys.Enter)
             {
-                m.Value = Int32.Parse(richTextBox1.Text);
-            }
-            catch (FormatException)
-            {
-                m.Value = 0;
+                try
+                {
+                    m.Value = Int32.Parse(richTextBox1.Text);
+                }
+                catch (FormatException)
+                {
+                    m.Value = 0;
+                }
             }
         }
 
         private void textBox1_KeyDown(object sender, KeyEventArgs e)
         {
-            try
+            if (e.KeyCode == Keys.Enter)
             {
-                m.Value = Int32.Parse(textBox1.Text);
-            }
-            catch (FormatException)
-            {
-                m.Value = 0;
+                try
+                {
+                    m.Value = Int32.Parse(textBox1.Text);
+                }
+                catch (FormatException)
+                {
+                    m.Value = 0;
+                }
             }
         }
 
@@ -95,8 +94,10 @@ namespace OOPlab4._2
             {
                 if (value > 9)
                     this.value = 9;
-                if (value < 0)
+                else if (value < 0)
                     this.value = 0;
+                else
+                    this.value = value;
                 observers.Invoke(this, null);
             }
         }
